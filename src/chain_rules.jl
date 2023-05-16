@@ -38,7 +38,7 @@ function ChainRulesCore.rrule(
 
     f(x, p) = first(Callable_Function(M, ZP.F, p)(x))
     _, pullback_f = ChainRulesCore.rrule_via_ad(rc, f, xᵅ, p)
-    _, fx, fp = pullback_f(one(xᵅ))
+    _, fx, fp = pullback_f(one(xᵅ)) #try to be more inference-friendly?
     yp = -fp / fx
 
     function pullback_solve_ZeroProblem(dy)
